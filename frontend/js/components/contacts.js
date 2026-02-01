@@ -152,7 +152,7 @@ const Contacts = () => {
 
   if (loading) {
     return h('div', { className: "flex items-center justify-center h-96" },
-      h(Icons.Loader2, { size: 48, className: "text-jaguar-900 animate-spin" })
+      h(Icons.Loader2, { size: 48, className: "text-neutral-900 animate-spin" })
     );
   }
 
@@ -160,11 +160,11 @@ const Contacts = () => {
   if (contactLists.length === 0) {
     return h('div', { className: "flex flex-col items-center justify-center h-96 text-center animate-fade-in" },
       h(Icons.Users, { size: 64, className: "text-stone-300 mb-4" }),
-      h('h3', { className: "font-serif text-2xl text-jaguar-900 mb-2" }, 'No Contact Lists Yet'),
+      h('h3', { className: "font-serif text-2xl text-neutral-900 mb-2" }, 'No Contact Lists Yet'),
       h('p', { className: "text-stone-500 mb-6 max-w-md" }, 'Create your first contact list to start organizing your prospects.'),
       h('button', {
         onClick: () => setShowNewListModal(true),
-        className: "px-6 py-3 bg-jaguar-900 text-cream-50 rounded-lg hover:bg-jaguar-800 flex items-center gap-2 transition-colors"
+        className: "px-6 py-3 bg-neutral-900 text-sand-50 rounded-xl hover:bg-neutral-800 flex items-center gap-2 transition-colors"
       },
         h(Icons.Plus, { size: 20 }),
         ' Create Your First List'
@@ -180,7 +180,7 @@ const Contacts = () => {
   return h('div', { className: "space-y-6 animate-fade-in" },
     h('div', { className: "flex justify-between items-end" },
       h('div', null,
-        h('h2', { className: "font-serif text-3xl text-jaguar-900" }, 'Contacts'),
+        h('h2', { className: "font-serif text-3xl text-neutral-900" }, 'Contacts'),
         h('p', { className: "text-stone-500 mt-2 font-light" }, 'Manage your contact lists and prospects.')
       ),
       h('div', { className: "flex gap-3" },
@@ -193,7 +193,7 @@ const Contacts = () => {
         ),
         selectedList && h('button', {
           onClick: () => setShowImportModal(true),
-          className: "px-4 py-2 bg-jaguar-900 text-cream-50 rounded-md hover:bg-jaguar-800 font-medium flex items-center gap-2 transition-colors"
+          className: "px-4 py-2 bg-neutral-900 text-sand-50 rounded-md hover:bg-neutral-800 font-medium flex items-center gap-2 transition-colors"
         },
           h(Icons.Upload, { size: 18 }),
           ' Import Contacts'
@@ -211,16 +211,16 @@ const Contacts = () => {
               setSelectedList(list);
               loadContacts(list.id);
             },
-            className: `px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-all flex items-center gap-2 ${
+            className: `px-4 py-2 rounded-xl font-medium whitespace-nowrap transition-all flex items-center gap-2 ${
               selectedList?.id === list.id
-                ? 'bg-jaguar-900 text-cream-50 shadow-lg'
-                : 'bg-white border border-stone-200 text-stone-700 hover:border-jaguar-900/30'
+                ? 'bg-neutral-900 text-sand-50 shadow-lg'
+                : 'bg-white border border-stone-200 text-stone-700 hover:border-neutral-900/30'
             }`
           },
             h('span', null, list.name),
             h('span', {
               className: `ml-2 text-xs px-1.5 py-0.5 rounded-full ${
-                selectedList?.id === list.id ? 'bg-white/20 text-cream-50' : 'bg-stone-100 text-stone-500'
+                selectedList?.id === list.id ? 'bg-white/20 text-sand-50' : 'bg-stone-100 text-stone-500'
               }`
             }, list.total_contacts || 0)
           ),
@@ -238,15 +238,15 @@ const Contacts = () => {
     ),
 
     // Contacts Table Container
-    h('div', { className: "bg-white border border-stone-200 rounded-lg shadow-sm overflow-hidden min-h-[400px]" },
+    h('div', { className: "bg-white border border-stone-200 rounded-xl shadow-sm overflow-hidden min-h-[400px]" },
       contacts.length === 0
         ? h('div', { className: "flex flex-col items-center justify-center py-20 text-center h-full" },
             h(Icons.Users, { size: 48, className: "text-stone-300 mb-3" }),
-            h('h3', { className: "font-medium text-jaguar-900 mb-2" }, 'No Contacts Yet'),
+            h('h3', { className: "font-medium text-neutral-900 mb-2" }, 'No Contacts Yet'),
             h('p', { className: "text-stone-500 text-sm mb-4" }, 'Import contacts to get started'),
             h('button', {
               onClick: () => setShowImportModal(true),
-              className: "px-4 py-2 bg-jaguar-900 text-cream-50 rounded-md hover:bg-jaguar-800 flex items-center gap-2 transition-colors"
+              className: "px-4 py-2 bg-neutral-900 text-sand-50 rounded-md hover:bg-neutral-800 flex items-center gap-2 transition-colors"
             },
               h(Icons.Upload, { size: 16 }),
               ' Import Contacts'
@@ -254,7 +254,7 @@ const Contacts = () => {
           )
         : h('div', { className: "overflow-x-auto" },
             h('table', { className: "w-full" },
-              h('thead', { className: "bg-cream-50 border-b border-stone-200" },
+              h('thead', { className: "bg-sand-50 border-b border-stone-200" },
                 h('tr', null,
                   h('th', { className: "px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider" }, 'Name'),
                   h('th', { className: "px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider" }, 'Email'),
@@ -267,15 +267,15 @@ const Contacts = () => {
                 ...contacts.map((contact) =>
                   h('tr', { 
                     key: contact.id, 
-                    className: "hover:bg-cream-50 transition-colors cursor-pointer",
+                    className: "hover:bg-sand-50 transition-colors cursor-pointer",
                     onClick: () => setEditingContact(contact)
                   },
                     h('td', { className: "px-6 py-4 whitespace-nowrap" },
                       h('div', { className: "flex items-center" },
-                        h('div', { className: "w-8 h-8 rounded-full bg-jaguar-100 text-jaguar-900 flex items-center justify-center text-sm font-medium mr-3" },
+                        h('div', { className: "w-8 h-8 rounded-full bg-jaguar-100 text-neutral-900 flex items-center justify-center text-sm font-medium mr-3" },
                           (contact.first_name?.[0]?.toUpperCase() || contact.email?.[0]?.toUpperCase() || '?')
                         ),
-                        h('div', { className: "font-medium text-jaguar-900" },
+                        h('div', { className: "font-medium text-neutral-900" },
                           `${contact.first_name || ''} ${contact.last_name || ''}`.trim() || 'Unknown'
                         )
                       )
@@ -300,7 +300,7 @@ const Contacts = () => {
                             e.stopPropagation();
                             setEditingContact(contact);
                           },
-                          className: "text-stone-400 hover:text-jaguar-900 transition-colors",
+                          className: "text-stone-400 hover:text-neutral-900 transition-colors",
                           title: "Edit contact"
                         }, h(Icons.Edit3, { size: 16 })),
                         h('button', { 
@@ -322,23 +322,23 @@ const Contacts = () => {
 
     // Stats Dashboard
     selectedList && contacts.length > 0 && h('div', { className: "grid grid-cols-1 md:grid-cols-4 gap-4" },
-      h('div', { className: "bg-white p-4 rounded-lg border border-stone-200" },
+      h('div', { className: "bg-white p-4 rounded-xl border border-stone-200" },
         h('div', { className: "text-sm text-stone-500 mb-1" }, 'Total Contacts'),
-        h('div', { className: "text-2xl font-serif text-jaguar-900" }, contacts.length)
+        h('div', { className: "text-2xl font-serif text-neutral-900" }, contacts.length)
       ),
-      h('div', { className: "bg-white p-4 rounded-lg border border-stone-200" },
+      h('div', { className: "bg-white p-4 rounded-xl border border-stone-200" },
         h('div', { className: "text-sm text-stone-500 mb-1" }, 'Active'),
         h('div', { className: "text-2xl font-serif text-green-600" },
           contacts.filter(c => c.status === 'active').length
         )
       ),
-      h('div', { className: "bg-white p-4 rounded-lg border border-stone-200" },
+      h('div', { className: "bg-white p-4 rounded-xl border border-stone-200" },
         h('div', { className: "text-sm text-stone-500 mb-1" }, 'Bounced'),
         h('div', { className: "text-2xl font-serif text-red-600" },
           contacts.filter(c => c.status === 'bounced').length
         )
       ),
-      h('div', { className: "bg-white p-4 rounded-lg border border-stone-200" },
+      h('div', { className: "bg-white p-4 rounded-xl border border-stone-200" },
         h('div', { className: "text-sm text-stone-500 mb-1" }, 'Unsubscribed'),
         h('div', { className: "text-2xl font-serif text-stone-400" },
           contacts.filter(c => c.status === 'unsubscribed').length
@@ -379,10 +379,10 @@ const NewListModal = ({ onClose, onCreate }) => {
     onClick: onClose
   },
     h('div', {
-      className: "bg-white rounded-lg p-8 max-w-md w-full mx-4",
+      className: "bg-white rounded-xl p-8 max-w-md w-full mx-4",
       onClick: (e) => e.stopPropagation()
     },
-      h('h3', { className: "font-serif text-2xl text-jaguar-900 mb-6" }, 'Create New List'),
+      h('h3', { className: "font-serif text-2xl text-neutral-900 mb-6" }, 'Create New List'),
       h('form', { onSubmit: handleSubmit, className: "space-y-4" },
         h('div', null,
           h('label', { className: "block text-sm font-medium text-stone-700 mb-2" }, 'List Name'),
@@ -391,7 +391,7 @@ const NewListModal = ({ onClose, onCreate }) => {
             required: true,
             value: formData.name,
             onChange: (e) => setFormData({...formData, name: e.target.value}),
-            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20 focus:border-jaguar-900 transition-all",
+            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20 focus:border-neutral-900 transition-all",
             placeholder: "Enterprise Prospects"
           })
         ),
@@ -400,7 +400,7 @@ const NewListModal = ({ onClose, onCreate }) => {
           h('textarea', {
             value: formData.description,
             onChange: (e) => setFormData({...formData, description: e.target.value}),
-            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20 focus:border-jaguar-900 transition-all resize-none",
+            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20 focus:border-neutral-900 transition-all resize-none",
             rows: 3,
             placeholder: "Describe this contact list..."
           })
@@ -413,7 +413,7 @@ const NewListModal = ({ onClose, onCreate }) => {
           }, 'Cancel'),
           h('button', {
             type: "submit",
-            className: "flex-1 px-4 py-2 bg-jaguar-900 text-cream-50 rounded-md hover:bg-jaguar-800 transition-colors"
+            className: "flex-1 px-4 py-2 bg-neutral-900 text-sand-50 rounded-md hover:bg-neutral-800 transition-colors"
           }, 'Create')
         )
       )
@@ -440,10 +440,10 @@ const EditContactModal = ({ contact, onClose, onSave }) => {
     onClick: onClose
   },
     h('div', {
-      className: "bg-white rounded-lg p-8 max-w-md w-full mx-4",
+      className: "bg-white rounded-xl p-8 max-w-md w-full mx-4",
       onClick: (e) => e.stopPropagation()
     },
-      h('h3', { className: "font-serif text-2xl text-jaguar-900 mb-6" }, 'Edit Contact'),
+      h('h3', { className: "font-serif text-2xl text-neutral-900 mb-6" }, 'Edit Contact'),
       h('form', { onSubmit: handleSubmit, className: "space-y-4" },
         h('div', { className: "grid grid-cols-2 gap-4" },
           h('div', null,
@@ -452,7 +452,7 @@ const EditContactModal = ({ contact, onClose, onSave }) => {
               type: "text",
               value: formData.first_name,
               onChange: (e) => setFormData({...formData, first_name: e.target.value}),
-              className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20 focus:border-jaguar-900 transition-all",
+              className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20 focus:border-neutral-900 transition-all",
               placeholder: "John"
             })
           ),
@@ -462,7 +462,7 @@ const EditContactModal = ({ contact, onClose, onSave }) => {
               type: "text",
               value: formData.last_name,
               onChange: (e) => setFormData({...formData, last_name: e.target.value}),
-              className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20 focus:border-jaguar-900 transition-all",
+              className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20 focus:border-neutral-900 transition-all",
               placeholder: "Doe"
             })
           )
@@ -474,7 +474,7 @@ const EditContactModal = ({ contact, onClose, onSave }) => {
             required: true,
             value: formData.email,
             onChange: (e) => setFormData({...formData, email: e.target.value}),
-            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20 focus:border-jaguar-900 transition-all",
+            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20 focus:border-neutral-900 transition-all",
             placeholder: "john@company.com"
           })
         ),
@@ -484,7 +484,7 @@ const EditContactModal = ({ contact, onClose, onSave }) => {
             type: "text",
             value: formData.company,
             onChange: (e) => setFormData({...formData, company: e.target.value}),
-            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20 focus:border-jaguar-900 transition-all",
+            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20 focus:border-neutral-900 transition-all",
             placeholder: "Acme Corp"
           })
         ),
@@ -493,7 +493,7 @@ const EditContactModal = ({ contact, onClose, onSave }) => {
           h('select', {
             value: formData.status,
             onChange: (e) => setFormData({...formData, status: e.target.value}),
-            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20 focus:border-jaguar-900 transition-all"
+            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20 focus:border-neutral-900 transition-all"
           },
             h('option', { value: "active" }, 'Active'),
             h('option', { value: "bounced" }, 'Bounced'),
@@ -509,7 +509,7 @@ const EditContactModal = ({ contact, onClose, onSave }) => {
           }, 'Cancel'),
           h('button', {
             type: "submit",
-            className: "flex-1 px-4 py-2 bg-jaguar-900 text-cream-50 rounded-md hover:bg-jaguar-800 transition-colors"
+            className: "flex-1 px-4 py-2 bg-neutral-900 text-sand-50 rounded-md hover:bg-neutral-800 transition-colors"
           }, 'Save Changes')
         )
       )
@@ -666,11 +666,11 @@ const ImportModal = ({ listId, onClose, onComplete }) => {
     onClick: onClose
   },
     h('div', {
-      className: "bg-white rounded-lg p-8 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto",
+      className: "bg-white rounded-xl p-8 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto",
       onClick: (e) => e.stopPropagation()
     },
       h('div', { className: "flex justify-between items-center mb-6" },
-        h('h3', { className: "font-serif text-2xl text-jaguar-900" }, 'Import Contacts'),
+        h('h3', { className: "font-serif text-2xl text-neutral-900" }, 'Import Contacts'),
         h('button', {
           onClick: onClose,
           className: "text-stone-400 hover:text-stone-600 transition-colors"
@@ -682,14 +682,14 @@ const ImportModal = ({ listId, onClose, onComplete }) => {
           onDragLeave: handleDrag,
           onDragOver: handleDrag,
           onDrop: handleDrop,
-          className: `border-2 border-dashed rounded-lg p-12 text-center transition-all ${
+          className: `border-2 border-dashed rounded-xl p-12 text-center transition-all ${
             dragActive
-              ? 'border-jaguar-900 bg-jaguar-100/10'
+              ? 'border-neutral-900 bg-jaguar-100/10'
               : 'border-stone-200 hover:border-stone-300'
           }`
         },
           h(Icons.Upload, { size: 48, className: "text-stone-300 mx-auto mb-4" }),
-          h('h4', { className: "font-medium text-jaguar-900 mb-2" }, 'Drop your file here'),
+          h('h4', { className: "font-medium text-neutral-900 mb-2" }, 'Drop your file here'),
           h('p', { className: "text-sm text-stone-500 mb-4" }, 'Supports CSV, XLS, and XLSX files'),
           h('input', {
             ref: fileInputRef,
@@ -700,12 +700,12 @@ const ImportModal = ({ listId, onClose, onComplete }) => {
           }),
           h('button', {
             onClick: () => fileInputRef.current?.click(),
-            className: "px-6 py-2 bg-jaguar-900 text-cream-50 rounded-md hover:bg-jaguar-800 transition-colors"
+            className: "px-6 py-2 bg-neutral-900 text-sand-50 rounded-md hover:bg-neutral-800 transition-colors"
           }, 'Choose File')
         ),
-        h('div', { className: "p-4 bg-cream-50 border border-stone-200 rounded-lg" },
-          h('h5', { className: "font-medium text-jaguar-900 mb-2 flex items-center gap-2" },
-            h(Icons.AlertCircle, { size: 16, className: "text-gold-600" }),
+        h('div', { className: "p-4 bg-sand-50 border border-stone-200 rounded-xl" },
+          h('h5', { className: "font-medium text-neutral-900 mb-2 flex items-center gap-2" },
+            h(Icons.AlertCircle, { size: 16, className: "text-terracotta-600" }),
             'File Requirements'
           ),
           h('ul', { className: "text-sm text-stone-600 space-y-1 ml-6 list-disc" },
@@ -716,15 +716,15 @@ const ImportModal = ({ listId, onClose, onComplete }) => {
         )
       ),
       step === 'mapping' && h('div', { className: "space-y-6" },
-        h('div', { className: "p-4 bg-cream-50 border border-stone-200 rounded-lg" },
+        h('div', { className: "p-4 bg-sand-50 border border-stone-200 rounded-xl" },
           h('div', { className: "flex items-center gap-2 mb-2" },
             h(Icons.Check, { size: 16, className: "text-green-600" }),
-            h('span', { className: "font-medium text-jaguar-900" }, file?.name)
+            h('span', { className: "font-medium text-neutral-900" }, file?.name)
           ),
           h('p', { className: "text-sm text-stone-600" }, `${parsedData.length} rows detected`)
         ),
         h('div', null,
-          h('h4', { className: "font-medium text-jaguar-900 mb-4" }, 'Map Your Columns'),
+          h('h4', { className: "font-medium text-neutral-900 mb-4" }, 'Map Your Columns'),
           h('div', { className: "space-y-3" },
             ...Object.keys(mapping).map(field =>
               h('div', { key: field, className: "grid grid-cols-2 gap-4 items-center" },
@@ -735,7 +735,7 @@ const ImportModal = ({ listId, onClose, onComplete }) => {
                 h('select', {
                   value: mapping[field],
                   onChange: (e) => setMapping({ ...mapping, [field]: e.target.value }),
-                  className: "px-3 py-2 border border-stone-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-jaguar-900/20 focus:border-jaguar-900"
+                  className: "px-3 py-2 border border-stone-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900/20 focus:border-neutral-900"
                 },
                   h('option', { value: "" }, '-- Skip --'),
                   ...headers.map((header, idx) =>
@@ -747,10 +747,10 @@ const ImportModal = ({ listId, onClose, onComplete }) => {
           )
         ),
         h('div', null,
-          h('h4', { className: "font-medium text-jaguar-900 mb-3" }, 'Preview (First 3 Rows)'),
-          h('div', { className: "overflow-x-auto border border-stone-200 rounded-lg" },
+          h('h4', { className: "font-medium text-neutral-900 mb-3" }, 'Preview (First 3 Rows)'),
+          h('div', { className: "overflow-x-auto border border-stone-200 rounded-xl" },
             h('table', { className: "w-full text-sm" },
-              h('thead', { className: "bg-cream-50" },
+              h('thead', { className: "bg-sand-50" },
                 h('tr', null,
                   ...Object.keys(mapping).filter(k => mapping[k]).map(field =>
                     h('th', { key: field, className: "px-3 py-2 text-left text-xs font-medium text-stone-500 uppercase" },
@@ -782,13 +782,13 @@ const ImportModal = ({ listId, onClose, onComplete }) => {
           h('button', {
             onClick: handleImport,
             disabled: !mapping.email,
-            className: "flex-1 px-4 py-2 bg-jaguar-900 text-cream-50 rounded-md hover:bg-jaguar-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className: "flex-1 px-4 py-2 bg-neutral-900 text-sand-50 rounded-md hover:bg-neutral-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           }, `Import ${parsedData.length} Contacts`)
         )
       ),
       step === 'processing' && h('div', { className: "flex flex-col items-center justify-center py-12" },
-        h(Icons.Loader2, { size: 48, className: "text-jaguar-900 animate-spin mb-4" }),
-        h('h4', { className: "font-medium text-jaguar-900 mb-2" }, 'Importing Contacts...'),
+        h(Icons.Loader2, { size: 48, className: "text-neutral-900 animate-spin mb-4" }),
+        h('h4', { className: "font-medium text-neutral-900 mb-2" }, 'Importing Contacts...'),
         h('p', { className: "text-sm text-stone-500" }, 'Please wait while we process your file')
       )
     )
