@@ -450,7 +450,7 @@ const CampaignBuilder = () => {
 
   if (loading) {
     return h('div', { className: "flex items-center justify-center h-96" },
-      h(Icons.Loader2, { className: "animate-spin text-jaguar-900", size: 48 })
+      h(Icons.Loader2, { className: "animate-spin text-neutral-900", size: 48 })
     );
   }
 
@@ -458,12 +458,12 @@ const CampaignBuilder = () => {
   if (!selectedCampaign && campaigns.length === 0) {
     return h('div', { className: "flex flex-col items-center justify-center h-96 text-center animate-fade-in" },
       h(Icons.Send, { size: 64, className: "text-stone-300 mb-4" }),
-      h('h3', { className: "font-serif text-2xl text-jaguar-900 mb-2" }, 'No Campaigns Yet'),
+      h('h3', { className: "font-serif text-2xl text-neutral-900 mb-2" }, 'No Campaigns Yet'),
       h('p', { className: "text-stone-500 mb-6 max-w-md" }, 'Create your first email campaign to start reaching out.'),
       h('div', { className: "flex gap-3" },
         h('button', {
           onClick: () => setShowNewCampaignModal(true),
-          className: "px-6 py-3 bg-jaguar-900 text-cream-50 rounded-lg hover:bg-jaguar-800 flex items-center gap-2 text-white"
+          className: "px-6 py-3 bg-neutral-900 text-sand-50 rounded-xl hover:bg-neutral-800 flex items-center gap-2 text-white"
         }, h(Icons.Plus, { size: 20 }), 'Create Campaign'),
       ),
       showNewCampaignModal && h(NewCampaignModal, { onClose: () => setShowNewCampaignModal(false), onCreate: handleCreateCampaign })
@@ -516,12 +516,12 @@ const CampaignBuilder = () => {
     // Header
     h('div', { className: "flex justify-between items-start mb-4 pb-4 border-b border-stone-200" },
       h('div', null,
-        h('h1', { className: "font-serif text-3xl text-jaguar-900 mb-2" }, selectedCampaign?.name),
+        h('h1', { className: "font-serif text-3xl text-neutral-900 mb-2" }, selectedCampaign?.name),
         h('div', { className: "flex items-center gap-2 text-sm text-stone-500" },
           h('span', { className: `w-2 h-2 rounded-full ${selectedCampaign?.status === 'running' ? 'bg-green-500 animate-pulse' : selectedCampaign?.status === 'paused' ? 'bg-yellow-500' : 'bg-stone-300'}` }),
           h('span', { className: "capitalize" }, selectedCampaign?.status),
           h('span', null, '•'),
-          isDemo ? h('span', { className: "text-gold-600" }, "Demo Mode") : h('span', null, "Auto-saved")
+          isDemo ? h('span', { className: "text-terracotta-600" }, "Demo Mode") : h('span', null, "Auto-saved")
         ),
         // Display email accounts
         !isDemo && campaignEmails.length > 0 && h('div', { className: "flex items-center gap-2 mt-2 text-xs text-stone-500" },
@@ -536,34 +536,34 @@ const CampaignBuilder = () => {
       h('div', { className: "flex gap-3" },
         !isDemo && selectedCampaign && h('button', {
           onClick: handleDeleteCampaign,
-          className: "p-2 border border-red-200 rounded-lg hover:bg-red-50 text-red-500 hover:text-red-700",
+          className: "p-2 border border-red-200 rounded-xl hover:bg-red-50 text-red-500 hover:text-red-700",
           title: "Delete Campaign"
         }, h(Icons.Trash2, { size: 20 })),
         !isDemo && selectedCampaign && (
           selectedCampaign.status === 'running'
             ? h('button', {
                 onClick: handlePauseCampaign,
-                className: "px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 flex items-center gap-2"
+                className: "px-4 py-2 bg-yellow-600 text-white rounded-xl hover:bg-yellow-700 flex items-center gap-2"
               }, h(Icons.Pause, { size: 16 }), 'Pause Campaign')
             : h('button', {
                 onClick: handleStartCampaign,
-                className: "px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center gap-2"
+                className: "px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 flex items-center gap-2"
               }, h(Icons.Play, { size: 16 }), selectedCampaign.status === 'paused' ? 'Resume Campaign' : 'Start Campaign')
         ),
         !isDemo && h('select', {
-          className: "px-4 py-2 border border-stone-200 rounded-lg bg-white",
+          className: "px-4 py-2 border border-stone-200 rounded-xl bg-white",
           value: selectedCampaign?.id,
           onChange: e => {
             const c = campaigns.find(x => x.id === e.target.value);
             if(c) handleSelectCampaign(c);
           }
         }, campaigns.map(c => h('option', { key: c.id, value: c.id }, c.name))),
-        h('button', { onClick: () => setShowNewCampaignModal(true), className: "p-2 border rounded-lg hover:bg-stone-50" }, h(Icons.Plus, { size: 20 }))
+        h('button', { onClick: () => setShowNewCampaignModal(true), className: "p-2 border rounded-xl hover:bg-stone-50" }, h(Icons.Plus, { size: 20 }))
       )
     ),
 
     // Stats Bar
-    !isDemo && stats && h('div', { className: "flex gap-4 mb-4 p-4 bg-cream-50 rounded-lg border border-stone-200" },
+    !isDemo && stats && h('div', { className: "flex gap-4 mb-4 p-4 bg-sand-50 rounded-xl border border-stone-200" },
       h(StatCard, { label: "Contacts", value: stats.total_contacts, icon: Icons.Users }),
       h(StatCard, { label: "Sent", value: stats.sent_count, icon: Icons.Send }),
       h(StatCard, { label: "Opened", value: stats.opened_count, rate: stats.open_rate, icon: Icons.Eye }),
@@ -571,7 +571,7 @@ const CampaignBuilder = () => {
       h(StatCard, { label: "Replied", value: stats.replied_count, rate: stats.reply_rate, icon: Icons.Reply })
     ),
 
-    !isDemo && loadingStats && !stats && h('div', { className: "flex items-center gap-2 mb-4 p-4 bg-cream-50 rounded-lg border border-stone-200 text-stone-500" },
+    !isDemo && loadingStats && !stats && h('div', { className: "flex items-center gap-2 mb-4 p-4 bg-sand-50 rounded-xl border border-stone-200 text-stone-500" },
       h(Icons.Loader2, { size: 16, className: "animate-spin" }),
       h('span', { className: "text-sm" }, "Loading campaign stats...")
     ),
@@ -579,7 +579,7 @@ const CampaignBuilder = () => {
     // Main Layout - Visual Workflow Canvas + Editor
     h('div', { className: "flex gap-6 flex-1 overflow-hidden" },
       // Workflow Canvas (Left)
-      h('div', { className: "w-2/3 overflow-auto pr-2 pb-10 custom-scrollbar bg-stone-50 rounded-lg border border-stone-200" },
+      h('div', { className: "w-2/3 overflow-auto pr-2 pb-10 custom-scrollbar bg-stone-50 rounded-xl border border-stone-200" },
         h(WorkflowCanvas, {
           steps,
           activeStep,
@@ -593,7 +593,7 @@ const CampaignBuilder = () => {
       ),
 
       // Editor (Right)
-      h('div', { className: "w-1/3 bg-white border border-stone-200 rounded-lg shadow-sm overflow-hidden" },
+      h('div', { className: "w-1/3 bg-white border border-stone-200 rounded-xl shadow-sm overflow-hidden" },
         activeStepData
           ? h(StepEditor, {
               step: activeStepData.step,
@@ -632,22 +632,22 @@ const WorkflowCanvas = ({ steps, activeStep, setActiveStep, onAddStep, onDeleteS
   // Add step button (inline)
   const AddStepInline = ({ onAdd, small = false }) => h('div', { className: "flex flex-col items-center" },
     h(Connector, { length: 20 }),
-    h('div', { className: `flex gap-2 p-2 bg-white border-2 border-dashed border-stone-300 rounded-lg hover:border-jaguar-900 transition-colors ${small ? 'scale-90' : ''}` },
+    h('div', { className: `flex gap-2 p-2 bg-white border-2 border-dashed border-stone-300 rounded-xl hover:border-neutral-900 transition-colors ${small ? 'scale-90' : ''}` },
       h('button', {
         onClick: () => onAdd('email'),
-        className: "p-2 hover:bg-cream-50 rounded transition-colors",
+        className: "p-2 hover:bg-sand-50 rounded transition-colors",
         title: "Add Email"
-      }, h(Icons.Mail, { size: small ? 16 : 18, className: "text-stone-500 hover:text-jaguar-900" })),
+      }, h(Icons.Mail, { size: small ? 16 : 18, className: "text-stone-500 hover:text-neutral-900" })),
       h('button', {
         onClick: () => onAdd('wait'),
-        className: "p-2 hover:bg-cream-50 rounded transition-colors",
+        className: "p-2 hover:bg-sand-50 rounded transition-colors",
         title: "Add Wait"
-      }, h(Icons.Clock, { size: small ? 16 : 18, className: "text-stone-500 hover:text-jaguar-900" })),
+      }, h(Icons.Clock, { size: small ? 16 : 18, className: "text-stone-500 hover:text-neutral-900" })),
       h('button', {
         onClick: () => onAdd('condition'),
-        className: "p-2 hover:bg-cream-50 rounded transition-colors",
+        className: "p-2 hover:bg-sand-50 rounded transition-colors",
         title: "Add Condition"
-      }, h(Icons.Split, { size: small ? 16 : 18, className: "text-stone-500 hover:text-jaguar-900" }))
+      }, h(Icons.Split, { size: small ? 16 : 18, className: "text-stone-500 hover:text-neutral-900" }))
     ),
     h(Connector, { length: 20 })
   );
@@ -664,14 +664,14 @@ const WorkflowCanvas = ({ steps, activeStep, setActiveStep, onAddStep, onDeleteS
     },
       h('div', {
         className: `relative min-w-[200px] p-4 rounded-xl border-2 shadow-md transition-all
-          ${isActive ? 'border-jaguar-900 bg-white ring-2 ring-jaguar-900/20' : 'border-stone-200 bg-white hover:border-stone-300'}
+          ${isActive ? 'border-neutral-900 bg-white ring-2 ring-neutral-900/20' : 'border-stone-200 bg-white hover:border-stone-300'}
           ${isCondition ? 'bg-gradient-to-br from-gold-50 to-amber-50' : ''}
         `
       },
         // Step type icon badge
         h('div', {
           className: `absolute -top-3 -left-3 w-10 h-10 rounded-full flex items-center justify-center shadow-md
-            ${isEmail ? 'bg-blue-500' : isWait ? 'bg-purple-500' : 'bg-gold-500'}
+            ${isEmail ? 'bg-blue-500' : isWait ? 'bg-purple-500' : 'bg-terracotta-500'}
           `
         },
           isEmail && h(Icons.Mail, { size: 18, className: "text-white" }),
@@ -692,17 +692,17 @@ const WorkflowCanvas = ({ steps, activeStep, setActiveStep, onAddStep, onDeleteS
           ),
 
           isEmail && h('div', { className: "mt-1" },
-            h('h4', { className: "font-semibold text-jaguar-900 truncate max-w-[180px]" }, step.subject || 'New Email'),
+            h('h4', { className: "font-semibold text-neutral-900 truncate max-w-[180px]" }, step.subject || 'New Email'),
             h('p', { className: "text-xs text-stone-500 truncate max-w-[180px]" }, (step.body || '').substring(0, 40) + '...')
           ),
 
           isWait && h('div', { className: "mt-1" },
-            h('h4', { className: "font-semibold text-jaguar-900" }, `Wait ${formatWaitDuration(step)}`),
+            h('h4', { className: "font-semibold text-neutral-900" }, `Wait ${formatWaitDuration(step)}`),
             h('p', { className: "text-xs text-stone-500" }, 'Delay before next step')
           ),
 
           isCondition && h('div', { className: "mt-1" },
-            h('h4', { className: "font-semibold text-jaguar-900 flex items-center gap-1" },
+            h('h4', { className: "font-semibold text-neutral-900 flex items-center gap-1" },
               h(Icons.Split, { size: 14 }),
               'Condition'
             ),
@@ -757,7 +757,7 @@ const WorkflowCanvas = ({ steps, activeStep, setActiveStep, onAddStep, onDeleteS
             h('div', { className: `w-0.5 h-8 ${color.accent}` }),
 
             // Branch container
-            h('div', { className: `p-3 rounded-lg border-2 ${color.border} ${color.bg} min-h-[100px]` },
+            h('div', { className: `p-3 rounded-xl border-2 ${color.border} ${color.bg} min-h-[100px]` },
               // Branch steps
               branchSteps.length > 0 ? h('div', { className: "space-y-3" },
                 branchSteps.map((branchStep, bsIndex) =>
@@ -799,7 +799,7 @@ const WorkflowCanvas = ({ steps, activeStep, setActiveStep, onAddStep, onDeleteS
         branches.length < CONDITION_OPTIONS.length && h('div', { className: "flex flex-col items-center justify-center" },
           h('button', {
             onClick: (e) => { e.stopPropagation(); onAddBranch(step.id); },
-            className: "w-12 h-12 rounded-full border-2 border-dashed border-stone-300 flex items-center justify-center hover:border-jaguar-900 hover:bg-cream-50 transition-colors",
+            className: "w-12 h-12 rounded-full border-2 border-dashed border-stone-300 flex items-center justify-center hover:border-neutral-900 hover:bg-sand-50 transition-colors",
             title: "Add another branch"
           }, h(Icons.Plus, { size: 20, className: "text-stone-400" }))
         )
@@ -817,8 +817,8 @@ const WorkflowCanvas = ({ steps, activeStep, setActiveStep, onAddStep, onDeleteS
       className: `relative cursor-pointer transition-all group ${isActive ? 'scale-105' : 'hover:scale-102'}`
     },
       h('div', {
-        className: `relative p-3 rounded-lg border shadow-sm transition-all bg-white
-          ${isActive ? `border-jaguar-900 ring-1 ring-jaguar-900/20` : `border-stone-200 hover:border-stone-300`}
+        className: `relative p-3 rounded-xl border shadow-sm transition-all bg-white
+          ${isActive ? `border-neutral-900 ring-1 ring-neutral-900/20` : `border-stone-200 hover:border-stone-300`}
         `
       },
         // Icon badge
@@ -839,12 +839,12 @@ const WorkflowCanvas = ({ steps, activeStep, setActiveStep, onAddStep, onDeleteS
 
         // Content
         isEmail && h('div', null,
-          h('span', { className: "text-xs font-semibold text-jaguar-900 block truncate max-w-[150px]" },
+          h('span', { className: "text-xs font-semibold text-neutral-900 block truncate max-w-[150px]" },
             step.subject || 'New Email'
           )
         ),
 
-        isWait && h('span', { className: "text-xs font-semibold text-jaguar-900" },
+        isWait && h('span', { className: "text-xs font-semibold text-neutral-900" },
           `Wait ${formatWaitDuration(step)}`
         )
       )
@@ -909,12 +909,12 @@ const WorkflowCanvas = ({ steps, activeStep, setActiveStep, onAddStep, onDeleteS
 
 const StatCard = ({ label, value, rate, icon: IconComponent }) => {
   return h('div', { className: "flex-1 flex items-center gap-3" },
-    h('div', { className: "p-2 bg-white rounded-lg border border-stone-200" },
-      h(IconComponent, { size: 18, className: "text-jaguar-900" })
+    h('div', { className: "p-2 bg-white rounded-xl border border-stone-200" },
+      h(IconComponent, { size: 18, className: "text-neutral-900" })
     ),
     h('div', null,
       h('div', { className: "flex items-baseline gap-1" },
-        h('span', { className: "text-xl font-semibold text-jaguar-900" }, value || 0),
+        h('span', { className: "text-xl font-semibold text-neutral-900" }, value || 0),
         rate !== undefined && rate > 0 && h('span', { className: "text-xs text-stone-500" }, `(${rate}%)`)
       ),
       h('span', { className: "text-xs text-stone-500" }, label)
@@ -951,7 +951,7 @@ const StepEditor = ({ step, onUpdate, saving }) => {
 
   return h('div', { className: "p-6 h-full overflow-y-auto animate-fade-in" },
     h('div', { className: "flex justify-between items-center mb-4" },
-      h('h3', { className: "font-serif text-xl text-jaguar-900" },
+      h('h3', { className: "font-serif text-xl text-neutral-900" },
         step.step_type === 'email' ? 'Email Content' :
         step.step_type === 'wait' ? 'Wait Delay' : 'Condition Settings'
       ),
@@ -978,7 +978,7 @@ const StepEditor = ({ step, onUpdate, saving }) => {
             personalizationVars.map(v => h('button', {
               key: v.var,
               onClick: () => insertVar(v.var),
-              className: "text-xs bg-stone-100 px-1.5 py-0.5 rounded hover:bg-jaguar-900 hover:text-white transition-colors"
+              className: "text-xs bg-stone-100 px-1.5 py-0.5 rounded hover:bg-neutral-900 hover:text-white transition-colors"
             }, v.var))
           )
         ),
@@ -996,7 +996,7 @@ const StepEditor = ({ step, onUpdate, saving }) => {
     step.step_type === 'wait' && h(WaitStepEditor, { data, handleChange, onUpdate, step }),
 
     step.step_type === 'condition' && h('div', { className: "space-y-4" },
-      h('div', { className: "p-4 bg-amber-50 rounded-lg border border-amber-200" },
+      h('div', { className: "p-4 bg-amber-50 rounded-xl border border-amber-200" },
         h('div', { className: "flex items-center gap-2 mb-2" },
           h(Icons.Split, { size: 20, className: "text-amber-600" }),
           h('span', { className: "font-semibold text-amber-900" }, "Condition Branches")
@@ -1181,8 +1181,8 @@ const NewCampaignModal = ({ onClose, onCreate }) => {
   };
 
   return h('div', { className: "fixed inset-0 bg-black/50 flex items-center justify-center z-50 animate-fade-in", onClick: onClose },
-    h('div', { className: "bg-white rounded-lg p-6 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto", onClick: e => e.stopPropagation() },
-      h('h3', { className: "font-serif text-2xl text-jaguar-900 mb-4" }, "New Campaign"),
+    h('div', { className: "bg-white rounded-xl p-6 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto", onClick: e => e.stopPropagation() },
+      h('h3', { className: "font-serif text-2xl text-neutral-900 mb-4" }, "New Campaign"),
       loading ? h(Icons.Loader2, { className: "animate-spin mx-auto" }) :
       h('form', { onSubmit: handleSubmit, className: "space-y-4" },
         h('div', null,
@@ -1196,20 +1196,20 @@ const NewCampaignModal = ({ onClose, onCreate }) => {
             emailAccounts.length > 1 && h('button', {
               type: "button",
               onClick: toggleAllAccounts,
-              className: "text-xs text-jaguar-900 hover:underline"
+              className: "text-xs text-neutral-900 hover:underline"
             }, formData.email_account_ids.length === emailAccounts.length ? "Deselect All" : "Select All")
           ),
           emailAccounts.length > 1 && h('p', { className: "text-xs text-stone-500 mb-2" },
             "Select multiple accounts to rotate sending across them"
           ),
-          h('div', { className: "border rounded-lg max-h-40 overflow-y-auto" },
+          h('div', { className: "border rounded-xl max-h-40 overflow-y-auto" },
             emailAccounts.length === 0 ?
               h('div', { className: "p-3 text-center text-stone-500 text-sm" }, "No email accounts found") :
               emailAccounts.map(account =>
                 h('label', {
                   key: account.id,
                   className: `flex items-center gap-2 p-2 hover:bg-stone-50 cursor-pointer border-b last:border-b-0 ${
-                    formData.email_account_ids.includes(account.id) ? 'bg-cream-50' : ''
+                    formData.email_account_ids.includes(account.id) ? 'bg-sand-50' : ''
                   }`
                 },
                   h('input', {
@@ -1234,7 +1234,7 @@ const NewCampaignModal = ({ onClose, onCreate }) => {
             contactLists.map(l => h('option', { key: l.id, value: l.id }, String(l.name)))
           )
         ),
-        h('div', { className: "flex items-center gap-2 p-3 bg-cream-50 rounded-lg border border-stone-200" },
+        h('div', { className: "flex items-center gap-2 p-3 bg-sand-50 rounded-xl border border-stone-200" },
           h('input', {
             type: "checkbox",
             id: "send_immediately",
@@ -1249,12 +1249,12 @@ const NewCampaignModal = ({ onClose, onCreate }) => {
         h('button', {
           type: "button",
           onClick: () => setShowAdvanced(!showAdvanced),
-          className: "text-sm text-jaguar-900 hover:underline flex items-center gap-1"
+          className: "text-sm text-neutral-900 hover:underline flex items-center gap-1"
         },
           h(showAdvanced ? Icons.ChevronUp : Icons.ChevronDown, { size: 16 }),
           showAdvanced ? "Hide Schedule" : "Show Schedule"
         ),
-        showAdvanced && h('div', { className: "space-y-3 p-3 bg-stone-50 rounded-lg border border-stone-200" },
+        showAdvanced && h('div', { className: "space-y-3 p-3 bg-stone-50 rounded-xl border border-stone-200" },
           h('div', null,
             h('label', { className: "block text-sm font-medium text-stone-700 mb-2" }, "Send Days"),
             h('div', { className: "flex flex-wrap gap-1" },
@@ -1265,7 +1265,7 @@ const NewCampaignModal = ({ onClose, onCreate }) => {
                   onClick: () => toggleDay(day.key),
                   className: `px-2 py-1 rounded text-xs font-medium transition-colors ${
                     formData.send_schedule.days.includes(day.key)
-                      ? 'bg-jaguar-900 text-white'
+                      ? 'bg-neutral-900 text-white'
                       : 'bg-white border border-stone-300 text-stone-600'
                   }`
                 }, day.label)
@@ -1305,7 +1305,7 @@ const NewCampaignModal = ({ onClose, onCreate }) => {
             )
           )
         ),
-        h('button', { type: "submit", className: "w-full bg-jaguar-900 text-white p-2 rounded hover:bg-jaguar-800" }, "Create Campaign")
+        h('button', { type: "submit", className: "w-full bg-neutral-900 text-white p-2 rounded hover:bg-neutral-800" }, "Create Campaign")
       )
     )
   );
