@@ -1,8 +1,8 @@
-/* Mr. Snowman - Custom Styles */
+/* Brazen - Custom Styles */
 
 body {
-  background-color: #FDFBF7;
-  color: #1F2937;
+  background-color: #FAF8F5;
+  color: #2D2D2D;
 }
 
 /* Custom Scrollbar */
@@ -12,16 +12,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #F7F4EB;
+  background: #F5F2ED;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #C5A065;
-  border-radius: 4px;
+  background: #C97656;
+  border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #B08D55;
+  background: #B45E41;
 }
 
 /* Smooth scrolling */
@@ -31,11 +31,30 @@ html {
 
 /* Selection */
 ::selection {
-  background-color: #C5A065;
+  background-color: #C97656;
   color: white;
 }
 
 ::-moz-selection {
-  background-color: #C5A065;
+  background-color: #C97656;
   color: white;
+}
+
+/* Custom utilities */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #C97656 #F5F2ED;
+}
+
+/* Gradient backgrounds */
+.gradient-warm {
+  background: linear-gradient(135deg, #F5E6D3 0%, #E8CDB0 100%);
+}
+
+.gradient-sunset {
+  background: linear-gradient(135deg, #FFB88C 0%, #DE6B48 100%);
+}
+
+.gradient-terracotta {
+  background: linear-gradient(135deg, #C97656 0%, #A64B2F 100%);
 }
