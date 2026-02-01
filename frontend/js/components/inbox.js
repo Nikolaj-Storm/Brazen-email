@@ -154,7 +154,7 @@ const Inbox = () => {
   if (loading && messages.length === 0) {
     return h('div', { className: "flex items-center justify-center h-96 animate-fade-in" },
       h('div', { className: "text-center" },
-        h(Icons.Loader2, { size: 48, className: "text-jaguar-900 animate-spin mx-auto mb-4" }),
+        h(Icons.Loader2, { size: 48, className: "text-neutral-900 animate-spin mx-auto mb-4" }),
         h('p', { className: "text-stone-500" }, 'Loading inbox...')
       )
     );
@@ -164,11 +164,11 @@ const Inbox = () => {
   if (error) {
     return h('div', { className: "flex flex-col items-center justify-center h-96 animate-fade-in" },
       h(Icons.AlertCircle, { size: 64, className: "text-red-300 mb-4" }),
-      h('h3', { className: "font-serif text-2xl text-jaguar-900 mb-2" }, 'Failed to Load Inbox'),
+      h('h3', { className: "font-serif text-2xl text-neutral-900 mb-2" }, 'Failed to Load Inbox'),
       h('p', { className: "text-stone-500 mb-4" }, error),
       h('button', {
         onClick: loadData,
-        className: "px-4 py-2 bg-jaguar-900 text-white rounded-lg hover:bg-jaguar-800 transition-colors"
+        className: "px-4 py-2 bg-neutral-900 text-white rounded-xl hover:bg-neutral-800 transition-colors"
       }, 'Retry')
     );
   }
@@ -177,7 +177,7 @@ const Inbox = () => {
     // Header
     h('div', { className: "flex justify-between items-center mb-6 pb-6 border-b border-stone-200" },
       h('div', null,
-        h('h1', { className: "font-serif text-3xl text-jaguar-900" }, "Unified Inbox"),
+        h('h1', { className: "font-serif text-3xl text-neutral-900" }, "Unified Inbox"),
         h('p', { className: "text-stone-500 mt-1" },
           messages.length === 0
             ? "No messages yet"
@@ -186,7 +186,7 @@ const Inbox = () => {
       ),
       h('div', { className: "flex gap-3" },
         h('select', {
-          className: "px-4 py-2 border border-stone-200 rounded-lg bg-white min-w-[200px] focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all",
+          className: "px-4 py-2 border border-stone-200 rounded-xl bg-white min-w-[200px] focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:border-transparent transition-all",
           value: selectedAccount,
           onChange: (e) => handleAccountChange(e.target.value)
         },
@@ -198,7 +198,7 @@ const Inbox = () => {
         h('button', {
           onClick: handleSyncInbox,
           disabled: syncing || loading,
-          className: "px-4 py-2 bg-jaguar-900 text-white rounded-lg hover:bg-jaguar-800 transition-colors disabled:opacity-50 flex items-center gap-2",
+          className: "px-4 py-2 bg-neutral-900 text-white rounded-xl hover:bg-neutral-800 transition-colors disabled:opacity-50 flex items-center gap-2",
           title: "Sync from mail server"
         },
           h(Icons.Download, { size: 16, className: syncing ? "animate-bounce" : "" }),
@@ -207,7 +207,7 @@ const Inbox = () => {
         h('button', {
           onClick: loadData,
           disabled: loading,
-          className: "p-2 border border-stone-200 rounded-lg hover:bg-stone-50 text-stone-600 transition-colors disabled:opacity-50",
+          className: "p-2 border border-stone-200 rounded-xl hover:bg-stone-50 text-stone-600 transition-colors disabled:opacity-50",
           title: "Refresh inbox"
         }, h(Icons.RefreshCw, { size: 20, className: loading ? "animate-spin" : "" }))
       )
@@ -217,7 +217,7 @@ const Inbox = () => {
     h('div', { className: "flex gap-6 flex-1 overflow-hidden" },
 
       // Message List (Left Sidebar)
-      h('div', { className: "w-1/3 bg-white border border-stone-200 rounded-lg overflow-hidden flex flex-col shadow-sm" },
+      h('div', { className: "w-1/3 bg-white border border-stone-200 rounded-xl overflow-hidden flex flex-col shadow-sm" },
         messages.length === 0 && !loading
           ? h('div', { className: "flex-1 flex flex-col items-center justify-center text-stone-400 p-8 text-center" },
               h(Icons.Inbox, { size: 48, className: "mb-4 opacity-20" }),
@@ -235,15 +235,15 @@ const Inbox = () => {
                   onClick: () => handleSelectMessage(msg),
                   className: `p-4 border-b border-stone-100 cursor-pointer transition-all ${
                     selectedMessage?.id === msg.id
-                      ? 'bg-cream-100 border-l-4 border-l-gold-600'
+                      ? 'bg-cream-100 border-l-4 border-l-terracotta-600'
                       : msg.is_read
-                        ? 'hover:bg-cream-50'
+                        ? 'hover:bg-sand-50'
                         : 'bg-blue-50/30 hover:bg-blue-50/50'
                   }`
                 },
                   h('div', { className: "flex justify-between items-start mb-1" },
                     h('span', {
-                      className: `truncate pr-2 ${msg.is_read ? 'text-stone-700' : 'font-semibold text-jaguar-900'}`
+                      className: `truncate pr-2 ${msg.is_read ? 'text-stone-700' : 'font-semibold text-neutral-900'}`
                     }, msg.from_name || msg.from_address),
                     h('span', { className: "text-xs text-stone-400 whitespace-nowrap" }, formatDate(msg.received_at))
                   ),
@@ -262,19 +262,19 @@ const Inbox = () => {
       ),
 
       // Message Detail (Right Content)
-      h('div', { className: "flex-1 bg-white border border-stone-200 rounded-lg shadow-sm overflow-hidden flex flex-col" },
+      h('div', { className: "flex-1 bg-white border border-stone-200 rounded-xl shadow-sm overflow-hidden flex flex-col" },
         selectedMessage
           ? h('div', { className: "flex flex-col h-full" },
               // Message Header
-              h('div', { className: "p-6 border-b border-stone-100 bg-cream-50" },
-                h('h2', { className: "font-serif text-2xl text-jaguar-900 mb-4" }, selectedMessage.subject || '(No Subject)'),
+              h('div', { className: "p-6 border-b border-stone-100 bg-sand-50" },
+                h('h2', { className: "font-serif text-2xl text-neutral-900 mb-4" }, selectedMessage.subject || '(No Subject)'),
                 h('div', { className: "flex justify-between items-start" },
                   h('div', { className: "flex gap-3" },
-                    h('div', { className: "w-10 h-10 rounded-full bg-jaguar-100 flex items-center justify-center text-jaguar-900 font-bold" },
+                    h('div', { className: "w-10 h-10 rounded-full bg-jaguar-100 flex items-center justify-center text-neutral-900 font-bold" },
                       getInitial(selectedMessage.from_name, selectedMessage.from_address)
                     ),
                     h('div', null,
-                      h('p', { className: "font-medium text-jaguar-900" }, selectedMessage.from_name || selectedMessage.from_address),
+                      h('p', { className: "font-medium text-neutral-900" }, selectedMessage.from_name || selectedMessage.from_address),
                       h('p', { className: "text-sm text-stone-500" }, `<${selectedMessage.from_address}>`)
                     )
                   ),
@@ -303,12 +303,12 @@ const Inbox = () => {
                     : h('div', { className: "text-stone-400 italic" }, "Loading...")
               ),
               // Reply Form (shown when replying)
-              showReplyForm && h('div', { className: "p-4 border-t border-stone-200 bg-cream-50" },
+              showReplyForm && h('div', { className: "p-4 border-t border-stone-200 bg-sand-50" },
                 h('div', { className: "mb-2" },
                   h('label', { className: "text-sm font-medium text-stone-700" }, `Reply to: ${selectedMessage.from_name || selectedMessage.from_address}`)
                 ),
                 h('textarea', {
-                  className: "w-full p-3 border border-stone-200 rounded-lg mb-3 resize-none",
+                  className: "w-full p-3 border border-stone-200 rounded-xl mb-3 resize-none",
                   rows: 6,
                   placeholder: "Type your reply here...",
                   value: replyBody,
@@ -317,7 +317,7 @@ const Inbox = () => {
                 }),
                 h('div', { className: "flex gap-2" },
                   h('button', {
-                    className: "px-4 py-2 bg-jaguar-900 text-white rounded-lg hover:bg-jaguar-800 transition-colors flex items-center gap-2 disabled:opacity-50",
+                    className: "px-4 py-2 bg-neutral-900 text-white rounded-xl hover:bg-neutral-800 transition-colors flex items-center gap-2 disabled:opacity-50",
                     onClick: handleSendReply,
                     disabled: sendingReply || !replyBody.trim()
                   },
@@ -325,7 +325,7 @@ const Inbox = () => {
                     h('span', null, sendingReply ? 'Sending...' : 'Send Reply')
                   ),
                   h('button', {
-                    className: "px-4 py-2 border border-stone-200 text-stone-700 rounded-lg hover:bg-stone-100 transition-colors",
+                    className: "px-4 py-2 border border-stone-200 text-stone-700 rounded-xl hover:bg-stone-100 transition-colors",
                     onClick: () => { setShowReplyForm(false); setReplyBody(''); },
                     disabled: sendingReply
                   }, 'Cancel')
@@ -335,14 +335,14 @@ const Inbox = () => {
               // Message Actions (Footer)
               !showReplyForm && h('div', { className: "p-4 border-t border-stone-100 bg-stone-50 flex gap-2" },
                 h('button', {
-                  className: "px-4 py-2 bg-jaguar-900 text-white rounded-lg hover:bg-jaguar-800 transition-colors flex items-center gap-2",
+                  className: "px-4 py-2 bg-neutral-900 text-white rounded-xl hover:bg-neutral-800 transition-colors flex items-center gap-2",
                   onClick: () => setShowReplyForm(true)
                 },
                   h(Icons.Reply, { size: 16 }),
                   h('span', null, 'Reply')
                 ),
                 h('button', {
-                  className: "px-4 py-2 border border-stone-200 text-stone-700 rounded-lg hover:bg-stone-100 transition-colors",
+                  className: "px-4 py-2 border border-stone-200 text-stone-700 rounded-xl hover:bg-stone-100 transition-colors",
                   onClick: () => {
                     // Copy email to clipboard for forwarding
                     const text = `Subject: Fwd: ${selectedMessage.subject}\n\n--- Forwarded Message ---\nFrom: ${selectedMessage.from_name || selectedMessage.from_address} <${selectedMessage.from_address}>\nDate: ${formatFullDate(selectedMessage.received_at)}\n\n${emailContent?.body_text || selectedMessage.snippet}`;
