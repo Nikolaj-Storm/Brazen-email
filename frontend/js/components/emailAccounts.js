@@ -53,12 +53,12 @@ const EmailAccounts = () => {
   return h('div', { className: "space-y-6 animate-fade-in" },
     h('div', { className: "flex justify-between items-end" },
       h('div', null,
-        h('h2', { className: "font-serif text-3xl text-jaguar-900" }, 'Infrastructure'),
+        h('h2', { className: "font-serif text-3xl text-neutral-900" }, 'Infrastructure'),
         h('p', { className: "text-stone-500 mt-2 font-light" }, 'Manage your connected email accounts.')
       ),
       h('button', {
         onClick: handleAddAccount,
-        className: "px-4 py-2 bg-jaguar-900 text-cream-50 rounded-md hover:bg-jaguar-800 font-medium flex items-center gap-2 transition-colors"
+        className: "px-4 py-2 bg-neutral-900 text-sand-50 rounded-md hover:bg-neutral-800 font-medium flex items-center gap-2 transition-colors"
       },
         h(Icons.Plus, { size: 18 }),
         ' Add Account'
@@ -67,7 +67,7 @@ const EmailAccounts = () => {
     h('div', { className: "border-b border-stone-200" }),
     loading
       ? h('div', { className: "flex justify-center py-12" },
-          h(Icons.Loader2, { size: 48, className: "text-jaguar-900" })
+          h(Icons.Loader2, { size: 48, className: "text-neutral-900" })
         )
       : h(AccountsTab, { accounts: accounts, onEdit: handleEditAccount }),
     showModal && h(AccountModal, {
@@ -82,7 +82,7 @@ const AccountsTab = ({ accounts, onEdit }) => {
   if (accounts.length === 0) {
     return h('div', { className: "flex flex-col items-center justify-center py-16 text-center" },
       h(Icons.Server, { size: 64, className: "text-stone-300 mb-4" }),
-      h('h3', { className: "font-serif text-2xl text-jaguar-900 mb-2" }, 'No Accounts Connected'),
+      h('h3', { className: "font-serif text-2xl text-neutral-900 mb-2" }, 'No Accounts Connected'),
       h('p', { className: "text-stone-500 mb-6 max-w-md" }, 'Connect your first email account to start sending campaigns.')
     );
   }
@@ -127,21 +127,21 @@ const AccountCard = ({ account, onEdit }) => {
     }
   };
 
-  return h('div', { className: "bg-white border border-stone-200 rounded-lg p-6 hover:shadow-lg transition-all group" },
+  return h('div', { className: "bg-white border border-stone-200 rounded-xl p-6 hover:shadow-lg transition-all group" },
     h('div', { className: "flex justify-between items-start mb-4" },
       h('div', { className: "flex items-center gap-3 w-full overflow-hidden" },
-        h('div', { className: "w-12 h-12 rounded-full bg-jaguar-900 text-cream-50 flex items-center justify-center font-serif text-xl shrink-0" },
+        h('div', { className: "w-12 h-12 rounded-full bg-neutral-900 text-sand-50 flex items-center justify-center font-serif text-xl shrink-0" },
           account.email_address[0].toUpperCase()
         ),
         h('div', { className: "flex-1 min-w-0" },
           account.sender_name
             ? h('div', null,
-                h('h3', { className: "font-medium text-jaguar-900 truncate", title: account.sender_name },
+                h('h3', { className: "font-medium text-neutral-900 truncate", title: account.sender_name },
                   account.sender_name
                 ),
                 h('p', { className: "text-xs text-stone-500 truncate", title: account.email_address }, account.email_address)
               )
-            : h('h3', { className: "font-medium text-jaguar-900 truncate", title: account.email_address },
+            : h('h3', { className: "font-medium text-neutral-900 truncate", title: account.email_address },
                 account.email_address
               )
         )
@@ -158,19 +158,19 @@ const AccountCard = ({ account, onEdit }) => {
     h('div', { className: "space-y-3" },
       h('div', { className: "flex justify-between text-sm" },
         h('span', { className: "text-stone-500" }, 'Daily Limit'),
-        h('span', { className: "font-medium text-jaguar-900" },
+        h('span', { className: "font-medium text-neutral-900" },
           (account.daily_send_limit?.toLocaleString() || '500')
         )
       ),
       h('div', { className: "flex justify-between text-sm" },
         h('span', { className: "text-stone-500" }, 'Sent Today'),
-        h('span', { className: "font-medium text-jaguar-900" },
+        h('span', { className: "font-medium text-neutral-900" },
           `${account.sent_today || 0} / ${account.daily_send_limit || 500}`
         )
       ),
       h('div', { className: "w-full bg-stone-100 rounded-full h-2" },
         h('div', {
-          className: "bg-jaguar-900 h-2 rounded-full transition-all",
+          className: "bg-neutral-900 h-2 rounded-full transition-all",
           style: {
             width: `${Math.min(100, ((account.sent_today || 0) / (account.daily_send_limit || 500)) * 100)}%`
           }
@@ -192,19 +192,19 @@ const AccountCard = ({ account, onEdit }) => {
     expanded && h('div', { className: "mt-4 pt-4 border-t border-stone-100 space-y-2 text-sm animate-fade-in" },
       account.sender_name && h('div', { className: "flex justify-between" },
         h('span', { className: "text-stone-500" }, 'Sender Name'),
-        h('span', { className: "text-jaguar-900" }, account.sender_name)
+        h('span', { className: "text-neutral-900" }, account.sender_name)
       ),
       h('div', { className: "flex justify-between" },
         h('span', { className: "text-stone-500" }, 'SMTP Host'),
-        h('span', { className: "text-jaguar-900 font-mono text-xs" }, account.smtp_host || 'smtp.example.com')
+        h('span', { className: "text-neutral-900 font-mono text-xs" }, account.smtp_host || 'smtp.example.com')
       ),
       h('div', { className: "flex justify-between" },
         h('span', { className: "text-stone-500" }, 'SMTP Port'),
-        h('span', { className: "text-jaguar-900" }, account.smtp_port || 587)
+        h('span', { className: "text-neutral-900" }, account.smtp_port || 587)
       ),
       h('div', { className: "flex justify-between" },
         h('span', { className: "text-stone-500" }, 'IMAP Host'),
-        h('span', { className: "text-jaguar-900 font-mono text-xs" }, account.imap_host || 'imap.example.com')
+        h('span', { className: "text-neutral-900 font-mono text-xs" }, account.imap_host || 'imap.example.com')
       )
     )
   );
@@ -307,11 +307,11 @@ const AccountModal = ({ account, onClose, onSave }) => {
     onClick: onClose
   },
     h('div', {
-      className: "bg-white rounded-lg p-8 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto",
+      className: "bg-white rounded-xl p-8 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto",
       onClick: (e) => e.stopPropagation()
     },
       h('div', { className: "flex justify-between items-center mb-6" },
-        h('h3', { className: "font-serif text-2xl text-jaguar-900" }, isEditing ? 'Edit Email Account' : 'Add Email Account'),
+        h('h3', { className: "font-serif text-2xl text-neutral-900" }, isEditing ? 'Edit Email Account' : 'Add Email Account'),
         h('button', {
           onClick: onClose,
           className: "text-stone-400 hover:text-stone-600 transition-colors"
@@ -321,67 +321,67 @@ const AccountModal = ({ account, onClose, onSave }) => {
         h('p', { className: "text-stone-600 mb-6" }, 'Choose your email provider:'),
         h('button', {
           onClick: () => handleTypeSelect('stalwart'),
-          className: "w-full p-6 border-2 border-stone-200 rounded-lg hover:border-jaguar-900 hover:bg-cream-50 transition-all text-left group"
+          className: "w-full p-6 border-2 border-stone-200 rounded-xl hover:border-neutral-900 hover:bg-sand-50 transition-all text-left group"
         },
           h('div', { className: "flex items-center gap-4" },
-            h('div', { className: "w-12 h-12 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xl group-hover:scale-110 transition-transform" }, 'ST'),
+            h('div', { className: "w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xl group-hover:scale-110 transition-transform" }, 'ST'),
             h('div', null,
-              h('h4', { className: "font-medium text-jaguar-900 mb-1" }, 'Stalwart SMTP'),
+              h('h4', { className: "font-medium text-neutral-900 mb-1" }, 'Stalwart SMTP'),
               h('p', { className: "text-sm text-stone-500" }, 'Custom SMTP relay for maximum deliverability')
             )
           )
         ),
         h('button', {
           onClick: () => handleTypeSelect('aws_workmail'),
-          className: "w-full p-6 border-2 border-stone-200 rounded-lg hover:border-jaguar-900 hover:bg-cream-50 transition-all text-left group"
+          className: "w-full p-6 border-2 border-stone-200 rounded-xl hover:border-neutral-900 hover:bg-sand-50 transition-all text-left group"
         },
           h('div', { className: "flex items-center gap-4" },
-            h('div', { className: "w-12 h-12 rounded-lg bg-orange-100 flex items-center justify-center text-orange-700 font-bold text-xl group-hover:scale-110 transition-transform" }, 'AWS'),
+            h('div', { className: "w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center text-orange-700 font-bold text-xl group-hover:scale-110 transition-transform" }, 'AWS'),
             h('div', null,
-              h('h4', { className: "font-medium text-jaguar-900 mb-1" }, 'AWS WorkMail'),
+              h('h4', { className: "font-medium text-neutral-900 mb-1" }, 'AWS WorkMail'),
               h('p', { className: "text-sm text-stone-500" }, 'Enterprise email service from Amazon')
             )
           )
         ),
         h('button', {
           onClick: () => handleTypeSelect('zoho'),
-          className: "w-full p-6 border-2 border-stone-200 rounded-lg hover:border-jaguar-900 hover:bg-cream-50 transition-all text-left group"
+          className: "w-full p-6 border-2 border-stone-200 rounded-xl hover:border-neutral-900 hover:bg-sand-50 transition-all text-left group"
         },
           h('div', { className: "flex items-center gap-4" },
-            h('div', { className: "w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center text-purple-700 font-bold text-xl group-hover:scale-110 transition-transform" }, 'Z'),
+            h('div', { className: "w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center text-purple-700 font-bold text-xl group-hover:scale-110 transition-transform" }, 'Z'),
             h('div', null,
-              h('h4', { className: "font-medium text-jaguar-900 mb-1" }, 'Zoho Mail'),
+              h('h4', { className: "font-medium text-neutral-900 mb-1" }, 'Zoho Mail'),
               h('p', { className: "text-sm text-stone-500" }, 'Professional email with simple setup (no app passwords needed)')
             )
           )
         ),
         h('button', {
           onClick: () => handleTypeSelect('gmail'),
-          className: "w-full p-6 border-2 border-stone-200 rounded-lg hover:border-jaguar-900 hover:bg-cream-50 transition-all text-left group"
+          className: "w-full p-6 border-2 border-stone-200 rounded-xl hover:border-neutral-900 hover:bg-sand-50 transition-all text-left group"
         },
           h('div', { className: "flex items-center gap-4" },
-            h('div', { className: "w-12 h-12 rounded-lg bg-red-100 flex items-center justify-center text-red-700 font-bold text-xl group-hover:scale-110 transition-transform" }, 'G'),
+            h('div', { className: "w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center text-red-700 font-bold text-xl group-hover:scale-110 transition-transform" }, 'G'),
             h('div', null,
-              h('h4', { className: "font-medium text-jaguar-900 mb-1" }, 'Gmail / Google Workspace'),
+              h('h4', { className: "font-medium text-neutral-900 mb-1" }, 'Gmail / Google Workspace'),
               h('p', { className: "text-sm text-stone-500" }, 'Connect your Gmail or Google Workspace account')
             )
           )
         ),
         h('button', {
           onClick: () => handleTypeSelect('outlook'),
-          className: "w-full p-6 border-2 border-stone-200 rounded-lg hover:border-jaguar-900 hover:bg-cream-50 transition-all text-left group"
+          className: "w-full p-6 border-2 border-stone-200 rounded-xl hover:border-neutral-900 hover:bg-sand-50 transition-all text-left group"
         },
           h('div', { className: "flex items-center gap-4" },
-            h('div', { className: "w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xl group-hover:scale-110 transition-transform" }, 'M'),
+            h('div', { className: "w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xl group-hover:scale-110 transition-transform" }, 'M'),
             h('div', null,
-              h('h4', { className: "font-medium text-jaguar-900 mb-1" }, 'Microsoft Outlook / Office 365'),
+              h('h4', { className: "font-medium text-neutral-900 mb-1" }, 'Microsoft Outlook / Office 365'),
               h('p', { className: "text-sm text-stone-500" }, 'Connect your Outlook or Microsoft 365 account')
             )
           )
         )
       ),
       step === 'details' && h('form', { onSubmit: handleSubmit, className: "space-y-6" },
-        (accountType === 'outlook' || accountType === 'gmail') && h('div', { className: "p-4 bg-amber-50 border border-amber-200 rounded-lg" },
+        (accountType === 'outlook' || accountType === 'gmail') && h('div', { className: "p-4 bg-amber-50 border border-amber-200 rounded-xl" },
           h('div', { className: "flex gap-3" },
             h(Icons.AlertCircle, { size: 20, className: "text-amber-600 shrink-0 mt-0.5" }),
             h('div', null,
@@ -413,7 +413,7 @@ const AccountModal = ({ account, onClose, onSave }) => {
             required: true,
             value: formData.email_address,
             onChange: (e) => setFormData({ ...formData, email_address: e.target.value }),
-            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20",
+            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20",
             placeholder: "john@company.com"
           })
         ),
@@ -423,13 +423,13 @@ const AccountModal = ({ account, onClose, onSave }) => {
             type: "text",
             value: formData.sender_name,
             onChange: (e) => setFormData({ ...formData, sender_name: e.target.value }),
-            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20",
+            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20",
             placeholder: "John Smith"
           }),
           h('p', { className: "text-xs text-stone-500 mt-1" }, 'How your name appears in the From field. E.g., "John Smith" results in "John Smith <john@company.com>". Improves deliverability.')
         ),
-        h('div', { className: "p-4 bg-cream-50 rounded-lg space-y-4" },
-          h('h4', { className: "font-medium text-jaguar-900" }, 'SMTP Settings (Outgoing)'),
+        h('div', { className: "p-4 bg-sand-50 rounded-xl space-y-4" },
+          h('h4', { className: "font-medium text-neutral-900" }, 'SMTP Settings (Outgoing)'),
           h('div', { className: "grid grid-cols-2 gap-4" },
             h('div', null,
               h('label', { className: "block text-sm font-medium text-stone-700 mb-2" }, 'SMTP Host'),
@@ -438,7 +438,7 @@ const AccountModal = ({ account, onClose, onSave }) => {
                 required: true,
                 value: formData.smtp_host,
                 onChange: (e) => setFormData({ ...formData, smtp_host: e.target.value }),
-                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20",
+                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20",
                 placeholder: "smtp.example.com"
               })
             ),
@@ -449,7 +449,7 @@ const AccountModal = ({ account, onClose, onSave }) => {
                 required: true,
                 value: formData.smtp_port,
                 onChange: (e) => setFormData({ ...formData, smtp_port: e.target.value }),
-                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20"
+                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20"
               })
             )
           ),
@@ -461,7 +461,7 @@ const AccountModal = ({ account, onClose, onSave }) => {
                 required: true,
                 value: formData.smtp_username,
                 onChange: (e) => setFormData({ ...formData, smtp_username: e.target.value }),
-                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20"
+                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20"
               })
             ),
             h('div', null,
@@ -472,13 +472,13 @@ const AccountModal = ({ account, onClose, onSave }) => {
                 placeholder: isEditing ? '(Leave blank to keep unchanged)' : '',
                 value: formData.smtp_password,
                 onChange: (e) => setFormData({ ...formData, smtp_password: e.target.value }),
-                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20"
+                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20"
               })
             )
           )
         ),
-        h('div', { className: "p-4 bg-cream-50 rounded-lg space-y-4" },
-          h('h4', { className: "font-medium text-jaguar-900" }, 'IMAP Settings (Incoming)'),
+        h('div', { className: "p-4 bg-sand-50 rounded-xl space-y-4" },
+          h('h4', { className: "font-medium text-neutral-900" }, 'IMAP Settings (Incoming)'),
           h('div', { className: "grid grid-cols-2 gap-4" },
             h('div', null,
               h('label', { className: "block text-sm font-medium text-stone-700 mb-2" }, 'IMAP Host'),
@@ -487,7 +487,7 @@ const AccountModal = ({ account, onClose, onSave }) => {
                 required: true,
                 value: formData.imap_host,
                 onChange: (e) => setFormData({ ...formData, imap_host: e.target.value }),
-                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20",
+                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20",
                 placeholder: "imap.example.com"
               })
             ),
@@ -498,7 +498,7 @@ const AccountModal = ({ account, onClose, onSave }) => {
                 required: true,
                 value: formData.imap_port,
                 onChange: (e) => setFormData({ ...formData, imap_port: e.target.value }),
-                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20"
+                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20"
               })
             )
           ),
@@ -510,7 +510,7 @@ const AccountModal = ({ account, onClose, onSave }) => {
                 required: true,
                 value: formData.imap_username,
                 onChange: (e) => setFormData({ ...formData, imap_username: e.target.value }),
-                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20"
+                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20"
               })
             ),
             h('div', null,
@@ -521,7 +521,7 @@ const AccountModal = ({ account, onClose, onSave }) => {
                 placeholder: isEditing ? '(Leave blank to keep unchanged)' : '',
                 value: formData.imap_password,
                 onChange: (e) => setFormData({ ...formData, imap_password: e.target.value }),
-                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20"
+                className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20"
               })
             )
           )
@@ -533,11 +533,11 @@ const AccountModal = ({ account, onClose, onSave }) => {
             required: true,
             value: formData.daily_send_limit,
             onChange: (e) => setFormData({ ...formData, daily_send_limit: e.target.value }),
-            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-jaguar-900/20"
+            className: "w-full px-4 py-2 border border-stone-200 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-900/20"
           })
         ),
         testResult && h('div', {
-          className: `p-4 rounded-lg border ${
+          className: `p-4 rounded-xl border ${
             testResult.success
               ? 'bg-green-50 border-green-200 text-green-700'
               : 'bg-red-50 border-red-200 text-red-700'
@@ -565,7 +565,7 @@ const AccountModal = ({ account, onClose, onSave }) => {
           ),
           h('button', {
             type: "submit",
-            className: "flex-1 px-4 py-2 bg-jaguar-900 text-cream-50 rounded-md hover:bg-jaguar-800 transition-colors"
+            className: "flex-1 px-4 py-2 bg-neutral-900 text-sand-50 rounded-md hover:bg-neutral-800 transition-colors"
           }, isEditing ? 'Save Changes' : 'Add Account')
         )
       )
